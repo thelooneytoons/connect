@@ -27,7 +27,7 @@ def disp(num):
   mycursor = mydb.cursor()
   mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
   sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-  val = ("square of" num, num**2)
+  val = (num, num**2)
   mycursor.execute(sql, val)
 
   mydb.commit()
