@@ -20,7 +20,7 @@ def home():
 def disp(num):
   mydb = mysql.connector.connect(
   host="localhost",
-  user="sql-instance-4",
+  user="sql-instance-6",
   database="sql-db-2",
   )
 
