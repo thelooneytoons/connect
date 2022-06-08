@@ -1,4 +1,4 @@
-import mysql.connector
+from mysql import connector
 
 
 from flask import Flask, jsonify, request
@@ -18,7 +18,7 @@ def home():
 
 @app.route('/home/<int:num>', methods = ['GET'])
 def disp(num):
-  mydb = mysql.connector.connect(
+  mydb = connector.connect(
   host="localhost",
   user="sql-instance-6",
   database="sql-db-2",
