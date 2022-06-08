@@ -18,7 +18,7 @@ def home():
 @app.route('/home/<int:num>', methods = ['GET'])
 def disp(num):
   mydb = connector.connect(
-  user="sql-instance-6",
+  user="new-user-5",
   database="sql-db-2",
   )
 
