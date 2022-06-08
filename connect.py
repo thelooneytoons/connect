@@ -15,26 +15,28 @@ def home():
 		return jsonify({'data': data})
 
 
-
 @app.route('/home/<int:num>', methods = ['GET'])
 def disp(num):
   mydb = connector.connect(
-  host="localhost",
   user="sql-instance-6",
   database="sql-db-2",
   )
 
   mycursor = mydb.cursor()
-  mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
-  sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-  val = (num, num**2)
+  if(mycursor.execute("SHOW TABLES")):
+    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+    val = (f"square of {num}", num**2)
+  else:
+    mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+    val = (f"square of {num}", num**2)
+  
   mycursor.execute(sql, val)
 
   mydb.commit()
 
   print(mycursor.rowcount, "record inserted.")
-
-	return jsonify({'data': num**2})
+  return jsonify({'data': num**2})
 
 
 if __name__ == '__main__':
