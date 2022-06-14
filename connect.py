@@ -20,14 +20,9 @@ def disp(num):
   )
 
   mycursor = mydb.cursor(buffered= True)
-  table_1 = mycursor.execute("SHOW TABLES")
-  if(table_1[0] == "customers"):
-    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-    val = (f"square of {num}", num**2)
-  else:
-    mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
-    sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
-    val = (f"square of {num}", num**2)
+  mycursor.execute("CREATE TABLE IF NOT EXISTS customers (name VARCHAR(255), address VARCHAR(255))")
+  sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+  val = (f"square of {num}", num**2)
   
   mycursor.execute(sql, val)
 
