@@ -1,11 +1,8 @@
 from mysql import connector
-
-
 from flask import Flask, jsonify, request
 
 
 app = Flask(__name__)
-
 
 @app.route('/', methods = ['GET', 'POST'])
 def home():
@@ -23,7 +20,8 @@ def disp(num):
   )
 
   mycursor = mydb.cursor(buffered= True)
-  if(mycursor.execute("SHOW TABLES") == "customers"):
+  table_1 = mycursor.execute("SHOW TABLES")
+  if(table_1[0] == "customers"):
     sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
     val = (f"square of {num}", num**2)
   else:
