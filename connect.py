@@ -23,7 +23,7 @@ def disp(num):
   )
 
   mycursor = mydb.cursor(buffered= True)
-  if(mycursor.execute("SHOW TABLES")):
+  if(mycursor.execute("SHOW TABLES") == "customers"):
     sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
     val = (f"square of {num}", num**2)
   else:
